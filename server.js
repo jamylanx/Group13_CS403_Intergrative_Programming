@@ -12,14 +12,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 
-// Test route
 app.get("/", (req, res) => {
   res.json({
     message: "Group 13 API is running",
   });
 });
 
-// Database test
 app.get("/db-test", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
