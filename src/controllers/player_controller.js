@@ -1,87 +1,103 @@
-let nextId = 1;
+const pool = require("../config/db");
 
-const players = [
-  { id: nextId++, name: "Miposhka", hero: "Mirana" },
-  { id: nextId++, name: "Yatoro", hero: "Juggernaut" },
-  { id: nextId++, name: "Satanic", hero: "Faceless Void" },
-  { id: nextId++, name: "Collapse", hero: "Magnus" },
-];
-
-const getAllPlayers = (request, response) => {
-  response.send(players);
+const getAllPlayers = async (request, response) => {
+  try {
+    const result = await pool.query("SELECT * FROM players ORDER BY id ASC");
+    response.json(result.rows);
+  } catch (error) {
+    console.error("Error getting players:", error);
+    response.status(500).json({ message: "Internal server error" });
+  }
 };
 
-const getPlayerById = (request, response) => {
+const getPlayerById = async (request, response) => {
   const id = Number(request.params.id);
-
-  const player = players.find((player) => player.id === id);
-
-  if (!player) {
-    return response.status(404).send("Player not found");
+  try {
+    const result = await pool.query("SELECT * FROM players WHERE id = $1", [id]);
+    
+    if (result.rows.length === 0) {
+      return response.status(404).json({ message: "Player not found" });
+    }
+    
+    response.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error getting player:", error);
+    response.status(500).json({ message: "Internal server error" });
   }
-
-  response.send(player);
 };
 
-const createPlayer = (request, response) => {
-  const newPlayer = {
-    id: nextId++,
-    name: request.body.name,
-    hero: request.body.hero,
-  };
-
-  players.push(newPlayer);
-
-  response.send(newPlayer);
+const createPlayer = async (request, response) => {
+  const { name, hero } = request.body;
+  try {
+    const result = await pool.query(
+      "INSERT INTO players (name, hero) VALUES ($1, $2) RETURNING *",
+      [name, hero]
+    );
+    response.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error creating player:", error);
+    response.status(500).json({ message: "Internal server error" });
+  }
 };
 
-const updatePlayer = (request, response) => {
+const updatePlayer = async (request, response) => {
   const id = Number(request.params.id);
+  const { name, hero } = request.body;
+  
+  try {
+    const result = await pool.query(
+      "UPDATE players SET name = $1, hero = $2 WHERE id = $3 RETURNING *",
+      [name, hero, id]
+    );
 
-  const player = players.find((player) => player.id === id);
+    if (result.rows.length === 0) {
+      return response.status(404).json({ message: "Player not found" });
+    }
 
-  if (!player) {
-    return response.status(404).send("Player not found");
+    response.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error updating player:", error);
+    response.status(500).json({ message: "Internal server error" });
   }
-
-  player.name = request.body.name;
-  player.hero = request.body.hero;
-
-  response.send(player);
 };
 
-const patchPlayer = (request, response) => {
+const patchPlayer = async (request, response) => {
   const id = Number(request.params.id);
+  const { name, hero } = request.body;
 
-  const player = players.find((player) => player.id === id);
+  try {
+    // COALESCE keeps the old value if the new value is not provided (null)
+    const result = await pool.query(
+      "UPDATE players SET name = COALESCE($1, name), hero = COALESCE($2, hero) WHERE id = $3 RETURNING *",
+      [name, hero, id]
+    );
 
-  if (!player) {
-    return response.status(404).send("Player not found");
+    if (result.rows.length === 0) {
+      return response.status(404).json({ message: "Player not found" });
+    }
+
+    response.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error patching player:", error);
+    response.status(500).json({ message: "Internal server error" });
   }
-
-  if (request.body.name !== undefined) {
-    player.name = request.body.name;
-  }
-
-  if (request.body.hero !== undefined) {
-    player.hero = request.body.hero;
-  }
-
-  response.send(player);
 };
 
-const deletePlayer = (request, response) => {
+const deletePlayer = async (request, response) => {
   const id = Number(request.params.id);
+  
+  try {
+    const result = await pool.query("DELETE FROM players WHERE id = $1 RETURNING *", [id]);
 
-  const playerIndex = players.findIndex((player) => player.id === id);
+    if (result.rows.length === 0) {
+      return response.status(404).json({ message: "Player not found" });
+    }
 
-  if (playerIndex === -1) {
-    return response.status(404).send("Player not found");
+    response.json({ message: "Player deleted successfully", deletedPlayer: result.rows[0] });
+  } catch (error) {
+    console.error("Error deleting player:", error);
+    response.status(500).json({ message: "Internal server error" });
   }
-
-  players.splice(playerIndex, 1);
-
-  response.send("Player deleted");
 };
 
 module.exports = {
