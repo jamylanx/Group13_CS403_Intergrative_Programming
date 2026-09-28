@@ -199,9 +199,9 @@ Example response:
 
 ```json
 {
-  "id": 1,
-  "name": "John",
-  "hero": "Warrior"
+  "id": 3,
+  "name": "Yatoro",
+  "hero": "Juggernaut"
 }
 ```
 
@@ -213,8 +213,8 @@ Request body:
 
 ```json
 {
-  "name": "John",
-  "hero": "Warrior"
+  "name": "Karltzy",
+  "hero": "Hirara"
 }
 ```
 
@@ -239,7 +239,7 @@ Request body:
 
 ```json
 {
-  "hero": "Archer"
+  "hero": "Dragon Knight"
 }
 ```
 
