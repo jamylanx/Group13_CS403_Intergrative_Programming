@@ -134,6 +134,27 @@ Example request:
   "password": "password123"
 }
 ```
+A successful login returns an authentication token.
+
+### Logout
+
+**POST** `/api/auth/logout`
+
+Logs out the authenticated user and invalidates the current authentication session/token according to the application's authentication implementation.
+
+### Refresh Token
+
+**POST** `/api/auth/refresh`
+
+Used to obtain a new access token using a valid refresh token.
+
+### Authentication Header
+
+For protected endpoints, include the access token in the request header:
+
+```http
+Authorization: Bearer <YOUR_TOKEN>
+```
 
 A successful login returns an authentication token.
 
