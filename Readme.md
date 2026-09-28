@@ -50,14 +50,15 @@ Use `.env.example` as a reference.
 Example:
 
 ```env
-PORT=3000
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
 
-DB_HOST=localhost
-DB_USER=your_database_user
-DB_PASSWORD=your_password
-DB_NAME=player_db
-
-JWT_SECRET=your_secret_key
+PORT=
+JWT_SECRET=
+JWT_REFRESH_SECRET=
 ```
 
 > **Important:** Do not commit the `.env` file to GitHub.
