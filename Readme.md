@@ -50,15 +50,15 @@ Use `.env.example` as a reference.
 Example:
 
 ```env
-DB_HOST=
-DB_PORT=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
+DB_HOST=localhost
+DB_PORT=port
+DB_NAME=database_name
+DB_USER=database_user
+DB_PASSWORD=database_password
 
-PORT=
-JWT_SECRET=
-JWT_REFRESH_SECRET=
+PORT=3000
+JWT_SECRET=jwt_secret
+JWT_REFRESH_SECRET=jwt_refresh_secret
 ```
 
 ### 4. Set Up the Database
@@ -117,7 +117,7 @@ Example request:
 
 ```json
 {
-  "email": "john@example.com",
+  "email": "user@example.com",
   "password": "password123"
 }
 ```
@@ -130,17 +130,12 @@ Example request:
 
 ```json
 {
-  "email": "john@example.com",
+  "email": "user@example.com",
   "password": "password123"
 }
 ```
-A successful login returns an authentication token.
 
-### Logout
-
-**POST** `/api/auth/logout`
-
-Logs out the authenticated user and invalidates the current authentication session/token according to the application's authentication implementation.
+A successful login returns an access token and refresh token.
 
 ### Refresh Token
 
@@ -148,17 +143,55 @@ Logs out the authenticated user and invalidates the current authentication sessi
 
 Used to obtain a new access token using a valid refresh token.
 
-### Authentication Header
+Example request:
 
-A successful login returns an authentication token.
-
-For protected endpoints, include the token in the request header:
-
-```http
-Authorization: Bearer <YOUR_TOKEN>
+```json
+{
+  "refreshToken": "<YOUR_REFRESH_TOKEN>"
+}
 ```
 
-In Swagger UI, you can enter the JWT using the **Authorize** button.
+### Get Current Account
+
+**GET** `/api/auth/me`
+
+Returns information about the currently authenticated account.
+
+This endpoint requires a valid access token.
+
+### Logout
+
+**POST** `/api/auth/logout`
+
+Logs out the account by removing the refresh token from the database.
+
+Example request:
+
+```json
+{
+  "refreshToken": "<YOUR_REFRESH_TOKEN>"
+}
+```
+
+### Authentication Header
+
+For protected endpoints, include the access token in the request header:
+
+```http
+Authorization: Bearer <YOUR_ACCESS_TOKEN>
+```
+
+In Swagger UI, you can enter the access token using the **Authorize** button.
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register a new account |
+| POST | `/api/auth/login` | Login and obtain access and refresh tokens |
+| POST | `/api/auth/refresh` | Generate a new access token |
+| GET | `/api/auth/me` | Get the current authenticated account |
+| POST | `/api/auth/logout` | Logout and remove the refresh token |
 
 ## Player API Endpoints
 
