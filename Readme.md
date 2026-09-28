@@ -50,15 +50,15 @@ Use `.env.example` as a reference.
 Example:
 
 ```env
-DB_HOST=
-DB_PORT=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
+DB_HOST=localhost
+DB_PORT=port
+DB_NAME=database_name
+DB_USER=database_user
+DB_PASSWORD=database_password
 
-PORT=
-JWT_SECRET=
-JWT_REFRESH_SECRET=
+PORT=3000
+JWT_SECRET=jwt_secret
+JWT_REFRESH_SECRET=jwt_refresh_secret
 ```
 
 ### 4. Set Up the Database
