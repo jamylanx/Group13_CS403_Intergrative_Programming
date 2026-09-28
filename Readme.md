@@ -117,7 +117,6 @@ Example request:
 
 ```json
 {
-  "name": "John Doe",
   "email": "john@example.com",
   "password": "password123"
 }
