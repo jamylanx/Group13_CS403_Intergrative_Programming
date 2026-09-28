@@ -150,12 +150,6 @@ Used to obtain a new access token using a valid refresh token.
 
 ### Authentication Header
 
-For protected endpoints, include the access token in the request header:
-
-```http
-Authorization: Bearer <YOUR_TOKEN>
-```
-
 A successful login returns an authentication token.
 
 For protected endpoints, include the token in the request header:
