@@ -31,8 +31,8 @@ A RESTful API for managing player data with CRUD operations, PostgreSQL database
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clone https://github.com/jamylanx/Group13_CS403_Intergrative_Programming.git
+cd Group13_CS403_Intergrative_Programming
 ```
 
 ### 2. Install Dependencies
