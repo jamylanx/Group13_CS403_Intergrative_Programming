@@ -15,6 +15,15 @@ A RESTful API for managing player data with CRUD operations, PostgreSQL database
 
 ## Technologies Used
 
+<p align="left">
+  <img src="https://cdn.simpleicons.org/nodedotjs/339933" width="45" height="45" alt="Node.js"/>
+  <img src="https://cdn.simpleicons.org/express/000000" width="45" height="45" alt="Express.js"/>
+  <img src="https://cdn.simpleicons.org/postgresql/4169E1" width="45" height="45" alt="PostgreSQL"/>
+  <img src="https://cdn.simpleicons.org/jsonwebtokens/000000" width="45" height="45" alt="JSON Web Token"/>
+  <img src="https://cdn.simpleicons.org/swagger/85EA2D" width="45" height="45" alt="Swagger"/>
+  <img src="https://cdn.simpleicons.org/dotenv/ECD53F" width="45" height="45" alt="dotenv"/>
+</p>
+
 - Node.js
 - Express.js
 - PostgreSQL
@@ -185,24 +194,24 @@ In Swagger UI, you can enter the access token using the **Authorize** button.
 
 ### Authentication Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register a new account |
-| POST | `/api/auth/login` | Login and obtain access and refresh tokens |
-| POST | `/api/auth/refresh` | Generate a new access token |
-| GET | `/api/auth/me` | Get the current authenticated account |
-| POST | `/api/auth/logout` | Logout and remove the refresh token |
+| Method | Endpoint             | Description                                |
+| ------ | -------------------- | ------------------------------------------ |
+| POST   | `/api/auth/register` | Register a new account                     |
+| POST   | `/api/auth/login`    | Login and obtain access and refresh tokens |
+| POST   | `/api/auth/refresh`  | Generate a new access token                |
+| GET    | `/api/auth/me`       | Get the current authenticated account      |
+| POST   | `/api/auth/logout`   | Logout and remove the refresh token        |
 
 ## Player API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/players` | Get all players |
-| GET | `/api/players/:id` | Get a player by ID |
-| POST | `/api/players` | Create a new player |
-| PUT | `/api/players/:id` | Update a player |
-| PATCH | `/api/players/:id` | Partially update a player |
-| DELETE | `/api/players/:id` | Delete a player |
+| Method | Endpoint           | Description               |
+| ------ | ------------------ | ------------------------- |
+| GET    | `/api/players`     | Get all players           |
+| GET    | `/api/players/:id` | Get a player by ID        |
+| POST   | `/api/players`     | Create a new player       |
+| PUT    | `/api/players/:id` | Update a player           |
+| PATCH  | `/api/players/:id` | Partially update a player |
+| DELETE | `/api/players/:id` | Delete a player           |
 
 > **Note:** All player endpoints require authentication. So make sure to enter Access token in the Authorize button in Swagger UI or Postman.
 
@@ -282,14 +291,14 @@ Request body:
 
 ## HTTP Status Codes
 
-| Status Code | Description |
-|-------------|-------------|
-| 200 | Request successful |
-| 201 | Resource created successfully |
-| 400 | Bad request or validation error |
-| 401 | Authentication required or invalid |
-| 404 | Resource not found |
-| 500 | Internal server error |
+| Status Code | Description                        |
+| ----------- | ---------------------------------- |
+| 200         | Request successful                 |
+| 201         | Resource created successfully      |
+| 400         | Bad request or validation error    |
+| 401         | Authentication required or invalid |
+| 404         | Resource not found                 |
+| 500         | Internal server error              |
 
 ## Validation and Error Handling
 
@@ -309,14 +318,14 @@ Examples include:
 
 The application uses environment variables for configuration and sensitive information.
 
-| Variable | Description |
-|----------|-------------|
-| `PORT` | Port used by the application |
-| `DB_HOST` | PostgreSQL database host |
-| `DB_USER` | PostgreSQL username |
-| `DB_PASSWORD` | PostgreSQL password |
-| `DB_NAME` | PostgreSQL database name |
-| `JWT_SECRET` | Secret key used for JWT authentication |
+| Variable      | Description                            |
+| ------------- | -------------------------------------- |
+| `PORT`        | Port used by the application           |
+| `DB_HOST`     | PostgreSQL database host               |
+| `DB_USER`     | PostgreSQL username                    |
+| `DB_PASSWORD` | PostgreSQL password                    |
+| `DB_NAME`     | PostgreSQL database name               |
+| `JWT_SECRET`  | Secret key used for JWT authentication |
 
 ## Git and Environment Files
 
