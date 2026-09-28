@@ -61,17 +61,15 @@ JWT_SECRET=
 JWT_REFRESH_SECRET=
 ```
 
-> **Important:** Do not commit the `.env` file to GitHub.
-
 ### 4. Set Up the Database
 
 Create the database in PostgreSQL:
 
 ```sql
-CREATE DATABASE player_db;
+CREATE DATABASE db_group13;
 ```
 
-Make sure the database credentials in your `.env` file match your PostgreSQL configuration.
+Make sure the database credentials in the `.env` file match your PostgreSQL configuration.
 
 If your project includes SQL files for creating tables, run those files after creating the database.
 
@@ -159,7 +157,7 @@ In Swagger UI, you can enter the JWT using the **Authorize** button.
 | PATCH | `/api/players/:id` | Partially update a player |
 | DELETE | `/api/players/:id` | Delete a player |
 
-> **Note:** All player endpoints require authentication.
+> **Note:** All player endpoints require authentication. So make sure to enter Access token in the Authorize button in Swagger UI
 
 ## Example Requests
 
@@ -258,6 +256,7 @@ Examples include:
 - Player not found
 - Database errors
 - Server errors
+- Global error handler
 
 ## Environment Variables
 
@@ -279,8 +278,6 @@ The project includes:
 - `.gitignore` to exclude `node_modules` and `.env`
 - `.env.example` containing the required environment variable names
 - `README.md` containing project setup and API information
-
-> **Security:** The actual `.env` file should never be committed to GitHub.
 
 ## Project Structure
 
@@ -306,10 +303,10 @@ Group13_CS403_Integrative_Programming/
 └── README.md
 ```
 
-## Author
+## Dev
 
-Group 13
+James Vasquez
 
 ## License
 
-This project was created as part of a school project.
+This project was created as part of our school activity and project.
