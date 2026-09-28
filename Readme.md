@@ -1,13 +1,13 @@
-# Player Management API
+# Group 13 REST API repository
 
-A RESTful API for managing player data with CRUD operations, database integration, authentication, validation, error handling, and Swagger API documentation.
+A RESTful API for managing player data with CRUD operations, PostgreSQL database integration, authentication, validation, error handling, and Swagger API documentation.
 
 ## Features
 
 - User registration and login
 - JWT authentication
 - Player CRUD operations
-- Database integration
+- PostgreSQL database integration
 - Request validation
 - Error handling
 - Protected API endpoints
@@ -17,10 +17,12 @@ A RESTful API for managing player data with CRUD operations, database integratio
 
 - Node.js
 - Express.js
-- MySQL
+- PostgreSQL
 - JSON Web Token (JWT)
 - bcrypt
 - Swagger / Swagger UI
+- swagger-jsdoc
+- swagger-ui-express
 - dotenv
 
 ## Installation
@@ -50,7 +52,7 @@ Example:
 PORT=3000
 
 DB_HOST=localhost
-DB_USER=root
+DB_USER=your_database_user
 DB_PASSWORD=your_password
 DB_NAME=player_db
 
@@ -61,13 +63,13 @@ JWT_SECRET=your_secret_key
 
 ### 4. Set Up the Database
 
-Create the database in MySQL:
+Create the database in PostgreSQL:
 
 ```sql
 CREATE DATABASE player_db;
 ```
 
-Make sure the database credentials in your `.env` file match your MySQL configuration.
+Make sure the database credentials in your `.env` file match your PostgreSQL configuration.
 
 If your project includes SQL files for creating tables, run those files after creating the database.
 
@@ -93,12 +95,12 @@ http://localhost:3000
 
 ## API Documentation
 
-This project uses Swagger for API documentation.
+This project uses Swagger/OpenAPI for API documentation.
 
 After starting the server, open:
 
 ```text
-http://localhost:3000/api-docs
+http://localhost:3000/api-docs/
 ```
 
 Swagger provides interactive documentation for the available API endpoints.
@@ -141,6 +143,8 @@ For protected endpoints, include the token in the request header:
 ```http
 Authorization: Bearer <YOUR_TOKEN>
 ```
+
+In Swagger UI, you can enter the JWT using the **Authorize** button.
 
 ## Player API Endpoints
 
@@ -260,10 +264,10 @@ The application uses environment variables for configuration and sensitive infor
 | Variable | Description |
 |----------|-------------|
 | `PORT` | Port used by the application |
-| `DB_HOST` | MySQL database host |
-| `DB_USER` | MySQL username |
-| `DB_PASSWORD` | MySQL password |
-| `DB_NAME` | MySQL database name |
+| `DB_HOST` | PostgreSQL database host |
+| `DB_USER` | PostgreSQL username |
+| `DB_PASSWORD` | PostgreSQL password |
+| `DB_NAME` | PostgreSQL database name |
 | `JWT_SECRET` | Secret key used for JWT authentication |
 
 ## Git and Environment Files
@@ -279,23 +283,30 @@ The project includes:
 ## Project Structure
 
 ```text
-project/
-├── controllers/
-├── middleware/
-├── routes/
-├── models/
-├── config/
-├── swagger.js
-├── server.js
+Group13_CS403_Integrative_Programming/
+├── src/
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   └── player_controller.js
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   └── player_route.js
+│   └── services/
+│       └── player_service.js
 ├── .env.example
 ├── .gitignore
 ├── package.json
+├── package-lock.json
+├── server.js
 └── README.md
 ```
 
 ## Author
 
-Your Name
+Group 13
 
 ## License
 
