@@ -20,7 +20,8 @@ A RESTful API for managing player data with CRUD operations, PostgreSQL database
 - PostgreSQL
 - JSON Web Token (JWT)
 - bcrypt
-- Swagger / Swagger UI
+- Swagger / OpenAPI
+- Swagger UI
 - swagger-jsdoc
 - swagger-ui-express
 - dotenv
