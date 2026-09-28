@@ -156,7 +156,7 @@ In Swagger UI, you can enter the JWT using the **Authorize** button.
 | PATCH | `/api/players/:id` | Partially update a player |
 | DELETE | `/api/players/:id` | Delete a player |
 
-> **Note:** All player endpoints require authentication. So make sure to enter Access token in the Authorize button in Swagger UI
+> **Note:** All player endpoints require authentication. So make sure to enter Access token in the Authorize button in Swagger UI or Postman.
 
 ## Example Requests
 
